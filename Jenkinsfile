@@ -1,17 +1,13 @@
 pipeline {
-  agent {
-    docker {
-      image 'bitwiseman/training'
-      args '-u root -v /home/jenkins'
-    }
-
-  }
+  agent none
   stages {
-    stage('DockerImage') {
-      steps {
-        echo 'docker file added'
-      }
+    stage ('Build') {
+      agent { label 'bzzzmaven' }
+      steps { ... }
     }
-
+    stage ('Deploy') {
+      agent { label 'bzzzproduction' }
+      steps { ... }
+    }
   }
 }
